@@ -107,6 +107,23 @@ const engineerPrompts = [{
     message: 'GitHub'
 }]
 
-function newEmployeeChoosing(){
+const employeeList = []
+
+function newEmployeeMenu(){
     inquirer.prompt(newEmployeeInputs)
+    .then(function(answer){
+        console.log(answer)
+        if(answer.employeeType === 'Intern'){
+            inquirer.prompt(internPrompts)
+            .then(function(internResponse){
+                console.log(internResponse.name)
+                const intern = new Intern(internResponse.name, internResponse.id, internResponse.email, internResponse.school)
+                employeeList.push(intern)
+                console.log(employeeList)
+                newEmployeeMenu();
+            })
+        }
+    })
 }
+
+newEmployeeMenu()
