@@ -13,6 +13,7 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+//^^^DONEEEEEEE^^^^^
 
 
 // After the user has input all employees desired, call the `render` function (required
@@ -26,10 +27,6 @@ const render = require("./lib/htmlRenderer");
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
 
 // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
 // and Intern classes should all extend from a class named Employee; see the directions
@@ -103,7 +100,7 @@ const engineerPrompts = [{
 },
 {
     type: 'input',
-    name: 'gitHub',
+    name: 'github',
     message: 'GitHub'
 }]
 
@@ -124,7 +121,7 @@ function newEmployeeMenu(){
         }else if(answer.employeeType === 'Engineer'){
             inquirer.prompt(engineerPrompts)
             .then(function(engineerResponse){
-                const engineer = new Engineer(engineerResponse.name, engineerResponse.id, engineerResponse.email, engineerResponse.gitHub)
+                const engineer = new Engineer(engineerResponse.name, engineerResponse.id, engineerResponse.email, engineerResponse.github)
                 employeeList.push(engineer)
                 newEmployeeMenu(); // loops the employee menu
                 console.log(employeeList)
