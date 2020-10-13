@@ -36,3 +36,77 @@ const render = require("./lib/htmlRenderer");
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+const newEmployeeInputs = [{
+    type: 'list',
+    name: 'employeeType',
+    message: 'Add an Employee: ',
+    choices: ['Intern', 'Engineer', 'Done']
+}]
+
+const managerPrompts = [{
+    type: 'input',
+    name: 'name',
+    message: 'Name: ',
+},
+{
+    type: 'input',
+    name: 'id',
+    message: 'Employee ID: '
+},
+{
+    type: 'input',
+    name: 'email',
+    message: 'Email: '
+},
+{
+    type: 'input',
+    name: 'officeNumber',
+    massage: 'Office Number: '
+}
+]
+const internPrompts = [{
+    type: 'input',
+    name: 'name',
+    message: 'Name: ',
+},
+{
+    type: 'input',
+    name: 'id',
+    message: 'Employee ID: '
+},
+{
+    type: 'input',
+    name: 'email',
+    message: 'Email: '
+},
+{
+    type: 'input',
+    name: 'school',
+    message: 'School: '
+}]
+
+const engineerPrompts = [{
+    type: 'input',
+    name: 'name',
+    message: 'Name: ',
+},
+{
+    type: 'input',
+    name: 'id',
+    message: 'Employee ID: '
+},
+{
+    type: 'input',
+    name: 'email',
+    message: 'Email: '
+},
+{
+    type: 'input',
+    name: 'gitHub',
+    message: 'GitHub'
+}]
+
+function newEmployeeChoosing(){
+    inquirer.prompt(newEmployeeInputs)
+}
