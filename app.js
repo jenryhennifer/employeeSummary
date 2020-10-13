@@ -47,7 +47,7 @@ const newEmployeeInputs = [{
 const managerPrompts = [{
     type: 'input',
     name: 'name',
-    message: 'Name: ',
+    message: 'Manager name: ',
 },
 {
     type: 'input',
@@ -107,6 +107,7 @@ const engineerPrompts = [{
     message: 'GitHub'
 }]
 
+//saves array of the employee lists
 const employeeList = []
 
 function newEmployeeMenu(){
@@ -116,14 +117,32 @@ function newEmployeeMenu(){
         if(answer.employeeType === 'Intern'){
             inquirer.prompt(internPrompts)
             .then(function(internResponse){
-                console.log(internResponse.name)
                 const intern = new Intern(internResponse.name, internResponse.id, internResponse.email, internResponse.school)
                 employeeList.push(intern)
-                console.log(employeeList)
-                newEmployeeMenu();
+                newEmployeeMenu(); // loops the employee menu
             })
+        }else if(answer.employeeType === 'Engineer'){
+            inquirer.prompt(engineerPrompts)
+            .then(function(engineerResponse){
+                const engineer = new Engineer(engineerResponse.name, engineerResponse.id, engineerResponse.email, engineerResponse.gitHub)
+                employeeList.push(engineer)
+                newEmployeeMenu(); // loops the employee menu
+                console.log(employeeList)
+            })
+        }else{
+            //add the render here!
         }
     })
 }
 
-newEmployeeMenu()
+function createManager(){
+    inquirer.prompt(managerPrompts)
+    .then(function(managerResponse){
+        const manager = new Manager(managerResponse.name,managerResponse.id,managerResponse.email,managerResponse.email);
+        employeeList.push(manager)
+        newEmployeeMenu();
+    })
+}
+
+//this will start the newEmployeeMenu
+createManager() 
