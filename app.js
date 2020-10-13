@@ -62,15 +62,13 @@ const managerPrompts = [{
     name: 'email',
     message: 'Email: ',
     validate: function (email) {
-
+        // tests for proper email format
         valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
 
         if (valid) {
-            console.log("Great job");
             return true;
         } else {
-            console.log(".  Please enter a valid email")
-            return false;
+            return "Please enter a valid email";
         }
     }
 },
@@ -114,15 +112,13 @@ const internPrompts = [{
     name: 'email',
     message: 'Email: ',
     validate: function (email) {
-
+        // tests for proper email format
         valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
 
         if (valid) {
-            console.log("Great job");
             return true;
         } else {
-            console.log(".  Please enter a valid email")
-            return false;
+            return "Please enter a valid email";
         }
     }
 },
@@ -142,21 +138,49 @@ const engineerPrompts = [{
     type: 'input',
     name: 'name',
     message: 'Name: ',
+    validate: function (name) {
+        if (name.length <= 0) {
+            return 'Must provide input';
+        }
+        return true;
+    }
 },
 {
     type: 'input',
     name: 'id',
-    message: 'Employee ID: '
+    message: 'Employee ID: ',
+    validate: function (name) {
+        if (name.length <= 0) {
+            return 'Must provide input';
+        }
+        return true;
+    }
 },
 {
     type: 'input',
     name: 'email',
     message: 'Email: '
+    validate: function (email) {
+        // tests for proper email format
+        valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+        if (valid) {
+            return true;
+        } else {
+            return "Please enter a valid email";
+        }
+    }
 },
 {
     type: 'input',
     name: 'github',
-    message: 'GitHub'
+    message: 'GitHub',
+    validate: function (name) {
+        if (name.length <= 0) {
+            return 'Must provide input';
+        }
+        return true;
+    }
 }]
 
 //saves array of the employee lists
@@ -197,7 +221,7 @@ function newEmployeeMenu() {
 function createManager() {
     inquirer.prompt(managerPrompts)
         .then(function (managerResponse) {
-            const manager = new Manager(managerResponse.name, managerResponse.id, managerResponse.email, managerResponse.email);
+            const manager = new Manager(managerResponse.name, managerResponse.id, managerResponse.email, managerResponse.officeNumber);
             employeeList.push(manager)
             newEmployeeMenu();
         })
