@@ -159,7 +159,7 @@ const engineerPrompts = [{
 {
     type: 'input',
     name: 'email',
-    message: 'Email: '
+    message: 'Email: ',
     validate: function (email) {
         // tests for proper email format
         valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
@@ -203,17 +203,16 @@ function newEmployeeMenu() {
                         const engineer = new Engineer(engineerResponse.name, engineerResponse.id, engineerResponse.email, engineerResponse.github)
                         employeeList.push(engineer)
                         newEmployeeMenu(); // loops the employee menu
-                        console.log(employeeList)
                     })
             } else {
                 //add the render here!
+
+                //creating an element for render (render is a function inside of the htmlRenderer.js) which renders employeeList
                 const output = render(employeeList);
+                //write the file to output/team.html with an error throw
                 fs.writeFile('output/team.html', output, 'utf8', function (err) {
                     console.log('success!')
                 })
-                console.log(output);
-                console.log(employeeList)
-                console.log('DONE')
             }
         })
 }
@@ -223,7 +222,7 @@ function createManager() {
         .then(function (managerResponse) {
             const manager = new Manager(managerResponse.name, managerResponse.id, managerResponse.email, managerResponse.officeNumber);
             employeeList.push(manager)
-            newEmployeeMenu();
+            newEmployeeMenu(); //begins newEmployeeMenu
         })
 }
 
