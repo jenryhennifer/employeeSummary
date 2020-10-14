@@ -3,9 +3,9 @@
 
 ## Installation
 
-GitHub:
+GitHub: https://github.com/jenryhennifer/employeeSummary
 
-Sample Video:
+Sample Video:  https://www.youtube.com/watch?v=GvJ9kiWJXzQ
 
 
 <hr />
@@ -17,6 +17,7 @@ Sample Video:
 * npm
     * inquirer
 * Node.js
+* TDD
 * HTML
 * GitLab 
 * Github
@@ -25,6 +26,7 @@ Sample Video:
 
 ## Sample
 
+![sample image](assets/htmlsample.png)
 
 <hr />
 
@@ -58,15 +60,27 @@ A package from NPM was used called Inquirer to allow prompts for the user to com
 
 ![input example](assets/sampleImg.png)
 
+Each prompt is given a validation to ensure the user gives a valid input:
+```
+validate: function (name) {
+    if (name.length <= 0) {
+        return 'Must provide input';
+    }
+    return true;
+}
+```
+When the user is asked for an email there is another validation given:
+```
+    validate: function (email) {
+    valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
 
-
-
-
-<hr />
-
-
-## Future Development
-
+    if (valid) {
+        return true;
+    } else {
+        return "Please enter a valid email";
+    }
+}
+```
 
 
 <hr />
